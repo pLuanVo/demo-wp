@@ -2,7 +2,6 @@
 
 From project directory:
     
-    docker-compose up -d
     docker-compose up
 
 Browser:
