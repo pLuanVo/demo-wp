@@ -1,7 +1,10 @@
-# demo-luan.vo
+# Wordpress Docker
 
-# test 1st commit
+From project directory:
+    
+    docker-compose up -d
+    docker-compose up
 
-# 2  nd
-
-# test ssh commit
+Browser:
+    
+    localhost:8000
