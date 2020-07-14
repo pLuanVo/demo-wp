@@ -1,0 +1,52 @@
+######## Tạo container ########
+docker run -itd --name=wp -p 8000:80 -v ${PWD}:/wpsource ubuntu
+
+docker start wp && docker attach wp
+
+######## cài đặt các gói #########
+#apt-get upgrade && apt-get update -y
+
+#apt install nginx mariadb-server mariadb-client php-fpm php-mysql php-curl php-gd php-mbstring php-xml php-xmlrpc nano wget -y
+
+######## tạo database ######## 
+#service mysql start
+
+#mysql_secure_installation
+
+#mysql -u root -p
+ 	
+	MariaDB [(none)]> CREATE DATABASE wordpress;
+	MariaDB [(none)]> CREATE USER 'wordpress'@'localhost' IDENTIFIED BY ‘wordpress’;
+	MariaDB [(none)]> GRANT ALL PRIVILEGES ON wordpress.* to wordpress@‘localhost’;
+	MariaDB [(none)]> FLUSH PRIVILEGES;
+    MariaDB [(none)]> exit;
+
+#nano /etc/php/7.4/fpm/php.ini
+      
+	cgi.fix_pathinfo=0
+
+######## cấu hình nginx ########	
+#nano /etc/nginx/sites-available/wordpress
+
+#rm /etc/nginx/sites-enabled/default
+
+#ln -s /etc/nginx/sites-available/wordpress /etc/nginx/sites-enabled/
+
+#service nginx restart
+
+######## copy source WP ########
+#wget -O /tmp/wordpress.tar.gz https://wordpress.org/latest.tar.gz
+
+#tar -xzvf /tmp/wordpress.tar.gz -C /var/www/html/
+
+#chown -R www-data:www-data /var/www/html/
+#chmod -R 775 /var/www/html/
+
+#mv /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
+
+#nano /var/www/html/wp-config.php
+
+
+#service mysql restart
+#service nginx restart
+#service php7.4-fpm restart
