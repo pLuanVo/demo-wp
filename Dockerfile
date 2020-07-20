@@ -13,6 +13,7 @@ RUN apt-get update -y && \
     php-xml \
     php-xmlrpc
 
+COPY ./wordpress/wp-config.php /var/www/html/wp-config.php
 COPY ./nginx/wordpress /etc/nginx/sites-available/
 COPY ./start.sh /start.sh
 
