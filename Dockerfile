@@ -19,6 +19,8 @@ COPY ./start.sh /start.sh
 RUN ln -s /etc/nginx/sites-available/wordpress /etc/nginx/sites-enabled/ \
     && rm /etc/nginx/sites-enabled/default \
     && sed -i -e 's/;cgi.fix.pathinfo=1/cgi.fix.pathinfo=0/g' /etc/php/7.4/fpm/php.ini \
+    && wget -O /var/www/html/ https://wordpress.org/latest.tar.gz \
+    && tar -xvzf /var/www/html/wordpress-* \
     && chown -R www-data:www-data /var/www/html/ \
     && chmod -R 775 /var/www/html/ \
     && chmod +x /start.sh
